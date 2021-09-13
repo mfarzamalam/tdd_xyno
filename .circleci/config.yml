@@ -1,0 +1,22 @@
+version: 1
+jobs:
+  build:
+    docker:
+      - image: windows
+    steps:
+      - checkout
+      - run:
+          name: Install virtual box
+          command: |
+            virtualenv
+            source env/bin/activate
+      
+      - run:
+          name: Install Dependencies
+          command: |
+            npm install jake
+
+      - run:
+          name: Install Build
+          command: |
+            node_modules/.bin/jake $*
