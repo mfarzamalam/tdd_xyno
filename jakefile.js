@@ -1,14 +1,27 @@
-task("default", [], function(){
-    console.log("default");
-});
+/*global desc, task, jake, fail, complete */
 
+(function(){
+    "use strict";
 
-desc("Example");
-task("example", ["dependency"], function(){
-    console.log("example task");
-});
+    desc("Build and Test");
+    task("default", ["test"]);
 
+    
+    desc("Test everything");
+    task("test", [], function() {
+		var reporter = require("nodeunit").reporters["default"];
+		reporter.run(['src/server/server.js']);
+	});
 
-task("dependency", function(){
-    console.log("dependency");
-});
+    
+    
+    desc("Example");
+    task("example", ["dependency"], function(){
+        console.log("example task");
+    });
+    
+    
+    task("dependency", function(){
+        console.log("dependency");
+    });
+}());

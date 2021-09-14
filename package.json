@@ -1,0 +1,6 @@
+{
+    "dependencies": {
+        "jake": "^10.8.2",
+        "nodeunit": "^0.11.3"
+    }
+}
