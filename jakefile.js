@@ -6,13 +6,11 @@
     desc("Build and Test");
     task("default", ["test"]);
 
-
-    desc("Test everything");
-    task("test", [], function() {
-		var reporter = require("nodeunit").reporters["default"];
-		reporter.run(['src/server/_server_test.js']);
-	});
-
+    
+    desc("Test Everything");
+    task("test", [], function(){
+        console.log("Test Everything");
+    });
 
 
     desc("Example");
