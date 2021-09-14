@@ -1,6 +1,6 @@
 "use strict";
 
 exports.testNothing = function(test){
-    test.ok(true, "number");
+    test.ok(3,3, "number");
     test.done();
 };
