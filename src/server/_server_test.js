@@ -1,9 +1,12 @@
-"use strict";
-
 var server = require("./server.js");
-var assert = require("assert");
+var http   = require("http");
 
-exports.testNothing = function(test){
-    assert.equal(3, server.number(), "number");
+exports.testHttpServer = function(test){
+    server.start();
+    
+    http.get("http://localhost:8000", function(response){
+
+    });
+
     test.done();
 };
