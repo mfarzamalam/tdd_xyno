@@ -9,8 +9,12 @@
     
     desc("Test Everything");
     task("test", [], function(){
-        console.log("Test Everything");
-    });
+        var reporter = require("nodeunit").reporters["default"];
+        reporter.run(['src/server/_server_test.js'], null, function(failures){
+            console.log("tests done");
+            complete();
+        });
+    }, {async: true});
 
 
     desc("Example");

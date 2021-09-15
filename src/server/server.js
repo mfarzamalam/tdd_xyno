@@ -1,5 +1,5 @@
-console.log("Hello, I’m a server. No, really what?");
+"use strict";
 
 exports.number = function(){
-    return 31;
+    return 3;
 };
