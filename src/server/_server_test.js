@@ -1,12 +1,18 @@
+"use strict";
+
 var server = require("./server.js");
-var http   = require("http");
+var http = require("http");
 
-exports.testHttpServer = function(test){
-    server.start();
-    
-    http.get("http://localhost:8000", function(response){
+exports.tearDown = function(done) {
+	server.stop(function() {
+		done();
+	});
+};
 
-    });
 
-    test.done();
+exports.testServerRespondsToGetRequests = function(test) {
+	server.start();
+	http.get("http://localhost:8080", function(response) {
+		test.done();
+	});
 };

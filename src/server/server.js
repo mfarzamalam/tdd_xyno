@@ -1,16 +1,17 @@
-var http   = require("http");
+"use strict";
+var http = require("http");
+var server;
 
-exports.start = function(){
-    var server = http.createServer();
+exports.start = function() {
+	server = http.createServer();
 
-    server.on("request", function(request, response){
-        console.log("Received request");
-    
-        var body = "<html><title>Node Http Server</title><head></head>"+
-                    "<body><p>This is an actual Node's HTTP server.</p></body></html>";
-    
-        response.end(body);
-    });
-    
-    server.listen(8000);
+	server.on("request", function(request, response) {
+		response.end();
+	});
+
+	server.listen(8080);
+};
+
+exports.stop = function(callback) {
+	server.close(callback);
 };
