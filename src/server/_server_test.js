@@ -27,6 +27,11 @@ exports.testServerRespondsToGetRequests = function(test) {
 };
 
 
+exports.test_serverServesAFile = function(test) {
+	test.done();
+};
+
+
 exports.test_serverRequiresPortNumber = function(test) {
 	test.throws(function() {
 		server.start();

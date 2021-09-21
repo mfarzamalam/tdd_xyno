@@ -6,7 +6,7 @@
     desc("Build and Test");
     task("default", ["test"]);
 
-    
+
     desc("Test Everything");
     task("test", [], function(){
         var reporter = require("nodeunit").reporters["default"];
