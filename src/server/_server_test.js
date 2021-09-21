@@ -4,13 +4,6 @@ var server = require("./server.js");
 var http = require("http");
 
 
-exports.tearDown = function(done) {
-	server.stop(function() {
-		done();
-	});
-};
-
-
 exports.testServerRespondsToGetRequests = function(test) {
 	server.start(8080);
 	var request = http.get("http://localhost:8080");
@@ -18,17 +11,33 @@ exports.testServerRespondsToGetRequests = function(test) {
 		var receivedData = false;
 		response.setEncoding("utf8");
 
-		
 		test.equals(200, response.statusCode, "status code");
 		response.on("data", function(chunk) {
 			receivedData = true;
 			test.equals("Hello World", chunk, "response text");
 		});
-		
-		
+
 		response.on("end", function() {
 			test.ok(receivedData, "should have received response data");
-			test.done();
+			server.stop(function(){
+				test.done();
+			});
 		});
+	});
+};
+
+
+exports.test_serverRequiresPortNumber = function(test) {
+	test.throws(function() {
+		server.start();
+	});
+	test.done();
+};
+
+
+exports.test_serverRunsCallbackWhenStopCompletes = function(test) {
+	server.start(8080);
+	server.stop(function() {
+		test.done();
 	});
 };
