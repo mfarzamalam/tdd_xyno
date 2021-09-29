@@ -8,9 +8,10 @@ exports.start = function(homePageToServe, notFoundPageToServe ,portNumber) {
 	server = http.createServer();
 	server.on("request", function(request, response){
 		if(request.url === "/" || request.url === "/index.html"){
+			response.statusCode = 200;
 			serveFile(response, homePageToServe);
 		}else{
-			response.statusCode = 200;
+			response.statusCode = 404;
 			serveFile(response, notFoundPageToServe);
 		}
 	});
