@@ -18,14 +18,18 @@
     task("default", ["test"]);
 
 
-    desc("Test Everything");
+    desc("Test everything");
     task("test", [TEMP_TESTFILE_DIR], function(){
-        var reporter = require("nodeunit").reporters["default"];
-        reporter.run(['src/server/_server_test.js'], null, function(failures){
-            if (failures) fail("Test Failed");
-            complete();
-        });
-    }, {async: true});
+		var testFiles = new jake.FileList();
+		testFiles.include("**/_*_test.js");
+		testFiles.exclude("node_modules");
+
+		var reporter = require("nodeunit").reporters["default"];
+		reporter.run(testFiles.toArray(), null, function(failures) {
+			if (failures) fail("Tests failed");
+			complete();
+		});
+	}, {async: true});
 
 
     desc("Example");
