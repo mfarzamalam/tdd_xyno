@@ -1,6 +1,8 @@
+var CONTENT_DIR = "src/server/content/";
 
 var server = require("./server.js");
+var port   = process.argv[2];
 
-server.start("src/server/content/homepage.html", "404.html", 8081, function(){
+server.start(CONTENT_DIR +"homepage.html", CONTENT_DIR +"404.html", port, function(){
     console.log("server started");
 });
